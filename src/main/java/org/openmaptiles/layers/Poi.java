@@ -94,24 +94,16 @@ public class Poi implements
     entry(FieldValues.CLASS_RAILWAY, 40),
     entry(FieldValues.CLASS_BUS, 50),
     entry(FieldValues.CLASS_ATTRACTION, 70),
-    entry(FieldValues.CLASS_HARBOR, 75),
-    entry(FieldValues.CLASS_COLLEGE, 80),
-    entry(FieldValues.CLASS_SCHOOL, 85),
-    entry(FieldValues.CLASS_STADIUM, 90),
     entry("zoo", 95),
     entry(FieldValues.CLASS_TOWN_HALL, 100),
-    entry(FieldValues.CLASS_CAMPSITE, 110),
     entry(FieldValues.CLASS_CEMETERY, 115),
     entry(FieldValues.CLASS_PARK, 120),
     entry(FieldValues.CLASS_LIBRARY, 130),
     entry("police", 135),
     entry(FieldValues.CLASS_POST, 140),
-    entry(FieldValues.CLASS_GOLF, 150),
     entry(FieldValues.CLASS_SHOP, 400),
     entry(FieldValues.CLASS_GROCERY, 500),
-    entry(FieldValues.CLASS_FAST_FOOD, 600),
-    entry(FieldValues.CLASS_CLOTHING_STORE, 700),
-    entry(FieldValues.CLASS_BAR, 800)
+    entry(FieldValues.CLASS_FAST_FOOD, 600)
   );
   private static final Set<String> UNIVERSITY_POI_SUBCLASSES = Set.of("university", "college");
   private static final List<String> AGG_STOP_SUBCLASS_ORDER = List.of(
@@ -140,9 +132,9 @@ public class Poi implements
 
   private String poiClass(String subclass, String mappingKey) {
     // Special case subclass collision between office=university and amenity=university
-    if ("amenity".equals(mappingKey) && "university".equals(subclass)) {
-      return FieldValues.CLASS_COLLEGE;
-    }
+    // if ("amenity".equals(mappingKey) && "university".equals(subclass)) {
+    //   return FieldValues.CLASS_COLLEGE;
+    // }
 
     subclass = coalesce(subclass, "");
     return classMapping.getOrElse(Map.of(
@@ -317,7 +309,7 @@ public class Poi implements
       .setAttr(Fields.LAYER, nullIfLong(element.layer(), 0))
       .setAttr(Fields.LEVEL, Parse.parseLongOrNull(element.source().getTag("level")))
       .setAttr(Fields.INDOOR, element.indoor() ? 1 : null)
-      .setAttr(Fields.AGG_STOP, aggStop)
+      // .setAttr(Fields.AGG_STOP, aggStop)
       .putAttrs(OmtLanguageUtils.getNames(element.source().tags(), translations))
       .setPointLabelGridPixelSize(14, 64)
       .setSortKey(rankOrder)

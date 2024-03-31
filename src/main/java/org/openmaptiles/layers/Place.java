@@ -243,7 +243,7 @@ public class Place implements
 
       features.point(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
         .putAttrs(names)
-        .setAttr(Fields.ISO_A2, isoA2)
+        // .setAttr(Fields.ISO_A2, isoA2)
         .setAttr(Fields.CLASS, FieldValues.CLASS_COUNTRY)
         .setAttr(Fields.RANK, rank)
         .setMinZoom(rank - 1)

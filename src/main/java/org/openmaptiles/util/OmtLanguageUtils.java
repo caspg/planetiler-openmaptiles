@@ -97,9 +97,9 @@ public class OmtLanguageUtils {
 
     putIfNotEmpty(result, "name", name);
     putIfNotEmpty(result, "name_en", coalesce(nameEn, name));
-    putIfNotEmpty(result, "name_de", coalesce(nameDe, name, nameEn));
+    // putIfNotEmpty(result, "name_de", coalesce(nameDe, name, nameEn));
     putIfNotEmpty(result, "name:latin", latin);
-    putIfNotEmpty(result, "name:nonlatin", nonLatin);
+    // putIfNotEmpty(result, "name:nonlatin", nonLatin);
     putIfNotEmpty(result, "name_int", coalesce(
       intName,
       nameEn,

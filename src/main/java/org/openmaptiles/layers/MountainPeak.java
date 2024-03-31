@@ -116,7 +116,7 @@ public class MountainPeak implements
   public void process(Tables.OsmPeakPoint element, FeatureCollector features) {
     Double meters = Parse.meters(element.ele());
     if (meters != null && Math.abs(meters) < 10_000) {
-      var feature = features.point(LAYER_NAME)
+      features.point(LAYER_NAME)
         .setAttr(Fields.CLASS, element.source().getTag("natural"))
         .putAttrs(OmtLanguageUtils.getNames(element.source().tags(), translations))
         .putAttrs(elevationTags(meters))
@@ -131,10 +131,6 @@ public class MountainPeak implements
         // in adjacent tiles. postProcess() will remove anything outside the desired buffer.
         .setBufferPixels(100)
         .setPointLabelGridSizeAndLimit(13, 100, 5);
-
-      if (peakInAreaUsingFeet(element)) {
-        feature.setAttr(Fields.CUSTOMARY_FT, 1);
-      }
     }
   }
 

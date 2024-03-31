@@ -35,7 +35,6 @@ See https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md for deta
  */
 package org.openmaptiles.layers;
 
-import static org.openmaptiles.util.Utils.nullIfEmpty;
 import static org.openmaptiles.util.Utils.nullOrEmpty;
 
 import com.onthegomap.planetiler.FeatureCollector;
@@ -76,8 +75,8 @@ public class AerodromeLabel implements
       .setMinZoom(important ? 8 : 10)
       .putAttrs(OmtLanguageUtils.getNames(element.source().tags(), translations))
       .putAttrs(Utils.elevationTags(element.ele()))
-      .setAttr(Fields.IATA, nullIfEmpty(element.iata()))
-      .setAttr(Fields.ICAO, nullIfEmpty(element.icao()))
+      // .setAttr(Fields.IATA, nullIfEmpty(element.iata()))
+      // .setAttr(Fields.ICAO, nullIfEmpty(element.icao()))
       .setAttr(Fields.CLASS, clazz);
   }
 }

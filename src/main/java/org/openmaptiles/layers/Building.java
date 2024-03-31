@@ -162,10 +162,10 @@ public class Building implements
       var feature = features.polygon(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
         .setMinZoom(13)
         .setMinPixelSize(2)
-        .setAttrWithMinzoom(Fields.RENDER_HEIGHT, renderHeight, 14)
-        .setAttrWithMinzoom(Fields.RENDER_MIN_HEIGHT, renderMinHeight, 14)
-        .setAttrWithMinzoom(Fields.COLOUR, color, 14)
-        .setAttrWithMinzoom(Fields.HIDE_3D, hide3d, 14)
+        // .setAttrWithMinzoom(Fields.RENDER_HEIGHT, renderHeight, 14)
+        // .setAttrWithMinzoom(Fields.RENDER_MIN_HEIGHT, renderMinHeight, 14)
+        // .setAttrWithMinzoom(Fields.COLOUR, color, 14)
+        // .setAttrWithMinzoom(Fields.HIDE_3D, hide3d, 14)
         .setSortKey(renderHeight);
       if (mergeZ13Buildings) {
         feature

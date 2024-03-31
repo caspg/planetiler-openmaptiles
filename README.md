@@ -1,4 +1,4 @@
-# Planetiler OpenMapTiles Profile
+# Planetiler OpenMapTiles Profile for Velomapa
 
 This OpenMapTiles profile for [Planetiler](https://github.com/onthegomap/planetiler) is based
 on [OpenMapTiles](https://github.com/openmaptiles/openmaptiles).
@@ -16,8 +16,12 @@ Or to build from source, after [installing Java 21+](https://adoptium.net/instal
 ```bash
 # Build the project (use mvnw.cmd on windows):
 ./mvnw clean package
+
+# or without tests
+ ./mvnw clean package -Dmaven.test.skip
+
 # Then run:
-java -jar target/*with-deps.jar --force --download --area=monaco
+JAVA_TOOL_OPTIONS="-Xmx12g" java -jar target/*with-deps.jar --force --download --area=pomorskie  --max_point_buffer=4 --exclude_layers=housenumber
 ```
 
 See [Planetiler README.md](https://github.com/onthegomap/planetiler/blob/main/README.md) for more description of the
@@ -36,7 +40,7 @@ available options.
 ## Customizing
 
 If you want to exclude layers or only include certain layers, then run the project
-with  `--exclude-layers=poi,housenumber,...` or `--only-layers=water,transportation,...` command-line arguments.
+with `--exclude-layers=poi,housenumber,...` or `--only-layers=water,transportation,...` command-line arguments.
 
 If you want to customize existing layers in OpenMapTiles, then fork this repo, find the appropriate class from
 the [layers package](src/main/java/org/openmaptiles/layers), and make a change to where it processes output features.

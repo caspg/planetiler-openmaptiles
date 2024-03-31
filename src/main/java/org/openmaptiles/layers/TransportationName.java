@@ -231,6 +231,19 @@ public class TransportationName implements
         .orElse(null);
     }
 
+    if (!relations.isEmpty()) {
+      String poland_ref = relations.stream()
+        .filter(r -> (r.network() != null && r.network().matches("pl:.*")))
+        .map(r -> r.ref())
+        .filter(r -> !nullOrEmpty(r))
+        .findFirst()
+        .orElse(null);
+
+      if (poland_ref != null && !poland_ref.isBlank()) {
+        ref = poland_ref;
+      }
+    }
+
     String name = nullIfEmpty(element.name());
     ref = nullIfEmpty(ref);
     String highway = nullIfEmpty(element.highway());
@@ -244,6 +257,8 @@ public class TransportationName implements
     String baseClass = highwayClass.replace("_construction", "");
 
     int minzoom = FieldValues.CLASS_TRUNK.equals(baseClass) ? 8 :
+      FieldValues.CLASS_PRIMARY.equals(baseClass) ? 9 :
+      FieldValues.CLASS_SECONDARY.equals(baseClass) ? 11 :
       FieldValues.CLASS_MOTORWAY.equals(baseClass) ? 6 :
       isLink ? 13 : 12; // fallback - get from line minzoom, but floor at 12
 

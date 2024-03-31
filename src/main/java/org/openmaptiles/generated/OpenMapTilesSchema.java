@@ -37,7 +37,10 @@ See https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md for deta
 
 package org.openmaptiles.generated;
 
-import static com.onthegomap.planetiler.expression.Expression.*;
+import static com.onthegomap.planetiler.expression.Expression.FALSE;
+import static com.onthegomap.planetiler.expression.Expression.and;
+import static com.onthegomap.planetiler.expression.Expression.matchAny;
+import static com.onthegomap.planetiler.expression.Expression.or;
 
 import com.onthegomap.planetiler.config.PlanetilerConfig;
 import com.onthegomap.planetiler.expression.MultiExpression;
@@ -113,7 +116,7 @@ public class OpenMapTilesSchema {
        * From zoom 6 are taken OSM IDs. Up to zoom 5 there are used Natural Earth lakes, where are propagated the OSM
        * IDs insted of Natural Earth IDs. For smaller area then planet, NE lakes keep their Natural Earth IDs.
        */
-      public static final String ID = "id";
+      // public static final String ID = "id";
 
       /**
        * All water polygons from <a href="http://osmdata.openstreetmap.de/">OpenStreetMapData</a> have the class
@@ -223,7 +226,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
        * deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // public static final String NAME_DE = "name_de";
 
       /**
        * The original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:waterway"><code>waterway</code></a>
@@ -377,13 +380,13 @@ public class OpenMapTilesSchema {
       public static final String CLASS_SAND = "sand";
       public static final Set<String> CLASS_VALUES =
         Set.of("farmland", "ice", "wood", "rock", "grass", "wetland", "sand");
-      public static final String SUBCLASS_ALLOTMENTS = "allotments";
+      // public static final String SUBCLASS_ALLOTMENTS = "allotments";
       public static final String SUBCLASS_BARE_ROCK = "bare_rock";
       public static final String SUBCLASS_BEACH = "beach";
       public static final String SUBCLASS_BOG = "bog";
       public static final String SUBCLASS_DUNE = "dune";
-      public static final String SUBCLASS_SCRUB = "scrub";
-      public static final String SUBCLASS_SHRUBBERY = "shrubbery";
+      // public static final String SUBCLASS_SCRUB = "scrub";
+      // public static final String SUBCLASS_SHRUBBERY = "shrubbery";
       public static final String SUBCLASS_FARM = "farm";
       public static final String SUBCLASS_FARMLAND = "farmland";
       public static final String SUBCLASS_FELL = "fell";
@@ -392,24 +395,24 @@ public class OpenMapTilesSchema {
       public static final String SUBCLASS_GLACIER = "glacier";
       public static final String SUBCLASS_GRASS = "grass";
       public static final String SUBCLASS_GRASSLAND = "grassland";
-      public static final String SUBCLASS_GOLF_COURSE = "golf_course";
-      public static final String SUBCLASS_HEATH = "heath";
-      public static final String SUBCLASS_MANGROVE = "mangrove";
-      public static final String SUBCLASS_MARSH = "marsh";
-      public static final String SUBCLASS_MEADOW = "meadow";
-      public static final String SUBCLASS_ORCHARD = "orchard";
+      // public static final String SUBCLASS_GOLF_COURSE = "golf_course";
+      // public static final String SUBCLASS_HEATH = "heath";
+      // public static final String SUBCLASS_MANGROVE = "mangrove";
+      // public static final String SUBCLASS_MARSH = "marsh";
+      // public static final String SUBCLASS_MEADOW = "meadow";
+      // public static final String SUBCLASS_ORCHARD = "orchard";
       public static final String SUBCLASS_PARK = "park";
-      public static final String SUBCLASS_PLANT_NURSERY = "plant_nursery";
-      public static final String SUBCLASS_RECREATION_GROUND = "recreation_ground";
-      public static final String SUBCLASS_REEDBED = "reedbed";
-      public static final String SUBCLASS_SALTERN = "saltern";
-      public static final String SUBCLASS_SALTMARSH = "saltmarsh";
+      // public static final String SUBCLASS_PLANT_NURSERY = "plant_nursery";
+      // public static final String SUBCLASS_RECREATION_GROUND = "recreation_ground";
+      // public static final String SUBCLASS_REEDBED = "reedbed";
+      // public static final String SUBCLASS_SALTERN = "saltern";
+      // public static final String SUBCLASS_SALTMARSH = "saltmarsh";
       public static final String SUBCLASS_SAND = "sand";
-      public static final String SUBCLASS_SCREE = "scree";
+      // public static final String SUBCLASS_SCREE = "scree";
       public static final String SUBCLASS_SWAMP = "swamp";
-      public static final String SUBCLASS_TIDALFLAT = "tidalflat";
-      public static final String SUBCLASS_TUNDRA = "tundra";
-      public static final String SUBCLASS_VILLAGE_GREEN = "village_green";
+      // public static final String SUBCLASS_TIDALFLAT = "tidalflat";
+      // public static final String SUBCLASS_TUNDRA = "tundra";
+      // public static final String SUBCLASS_VILLAGE_GREEN = "village_green";
       public static final String SUBCLASS_VINEYARD = "vineyard";
       public static final String SUBCLASS_WET_MEADOW = "wet_meadow";
       public static final String SUBCLASS_WETLAND = "wetland";
@@ -502,34 +505,33 @@ public class OpenMapTilesSchema {
     final class FieldValues {
       public static final String CLASS_RAILWAY = "railway";
       public static final String CLASS_CEMETERY = "cemetery";
-      public static final String CLASS_MILITARY = "military";
+      // public static final String CLASS_MILITARY = "military";
       public static final String CLASS_RESIDENTIAL = "residential";
       public static final String CLASS_COMMERCIAL = "commercial";
-      public static final String CLASS_INDUSTRIAL = "industrial";
-      public static final String CLASS_GARAGES = "garages";
+      // public static final String CLASS_INDUSTRIAL = "industrial";
+      // public static final String CLASS_GARAGES = "garages";
       public static final String CLASS_RETAIL = "retail";
-      public static final String CLASS_BUS_STATION = "bus_station";
-      public static final String CLASS_SCHOOL = "school";
-      public static final String CLASS_UNIVERSITY = "university";
-      public static final String CLASS_KINDERGARTEN = "kindergarten";
-      public static final String CLASS_COLLEGE = "college";
-      public static final String CLASS_LIBRARY = "library";
+      // public static final String CLASS_BUS_STATION = "bus_station";
+      // public static final String CLASS_UNIVERSITY = "university";
+      // public static final String CLASS_KINDERGARTEN = "kindergarten";
+      // public static final String CLASS_COLLEGE = "college";
+      // public static final String CLASS_LIBRARY = "library";
       public static final String CLASS_HOSPITAL = "hospital";
-      public static final String CLASS_STADIUM = "stadium";
-      public static final String CLASS_PITCH = "pitch";
-      public static final String CLASS_PLAYGROUND = "playground";
+      // public static final String CLASS_STADIUM = "stadium";
+      // public static final String CLASS_PITCH = "pitch";
+      // public static final String CLASS_PLAYGROUND = "playground";
       public static final String CLASS_TRACK = "track";
-      public static final String CLASS_THEME_PARK = "theme_park";
-      public static final String CLASS_ZOO = "zoo";
+      // public static final String CLASS_THEME_PARK = "theme_park";
+      // public static final String CLASS_ZOO = "zoo";
       public static final String CLASS_SUBURB = "suburb";
       public static final String CLASS_QUARTER = "quarter";
       public static final String CLASS_NEIGHBOURHOOD = "neighbourhood";
       public static final String CLASS_DAM = "dam";
       public static final String CLASS_QUARRY = "quarry";
       public static final Set<String> CLASS_VALUES =
-        Set.of("railway", "cemetery", "military", "residential", "commercial", "industrial", "garages", "retail",
-          "bus_station", "school", "university", "kindergarten", "college", "library", "hospital", "stadium", "pitch",
-          "playground", "track", "theme_park", "zoo", "suburb", "quarter", "neighbourhood", "dam", "quarry");
+        Set.of("railway", "cemetery", "residential", "commercial", "retail",
+          "hospital",
+          "track", "suburb", "quarter", "neighbourhood", "dam", "quarry");
     }
     /** Complex mappings to generate attribute values from OSM element tags in the landuse layer. */
     final class FieldMappings {
@@ -563,11 +565,8 @@ public class OpenMapTilesSchema {
        * removed in a future release in favor of <code>name:en</code>.
        */
       public static final String NAME_EN = "name_en";
-      /**
-       * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
-       * deprecated and will be removed in a future release in favor of <code>name:de</code>.
-       */
-      public static final String NAME_DE = "name_de";
+      /** German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. */
+      // // public static final String NAME_DE = "name_de";
 
       /**
        * Use the <strong>class</strong> to differentiate between natural objects.
@@ -586,7 +585,7 @@ public class OpenMapTilesSchema {
       /** Elevation (<code>ele</code>) in meters. */
       public static final String ELE = "ele";
       /** Elevation (<code>ele</code>) in feet. */
-      public static final String ELE_FT = "ele_ft";
+      // public static final String ELE_FT = "ele_ft";
 
       /**
        * Value 1 for peaks in location where feet is used as customary unit (USA).
@@ -597,7 +596,7 @@ public class OpenMapTilesSchema {
        * <li>null
        * </ul>
        */
-      public static final String CUSTOMARY_FT = "customary_ft";
+      // public static final String CUSTOMARY_FT = "customary_ft";
       /** Rank of the peak within one tile (starting at 1 that is the most important peak). */
       public static final String RANK = "rank";
     }
@@ -663,7 +662,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code> (point
        * features only). This is deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // // public static final String NAME_DE = "name_de";
       /** Rank of the park within one tile, starting at 1 that is the most important park (point features only). */
       public static final String RANK = "rank";
     }
@@ -717,9 +716,9 @@ public class OpenMapTilesSchema {
        */
       public static final String ADMIN_LEVEL = "admin_level";
       /** State name on the left of the border. For country boundaries only (<code>admin_level = 2</code>). */
-      public static final String ADM0_L = "adm0_l";
+      // public static final String ADM0_L = "adm0_l";
       /** State name on the right of the border. For country boundaries only (<code>admin_level = 2</code>). */
-      public static final String ADM0_R = "adm0_r";
+      // public static final String ADM0_R = "adm0_r";
 
       /**
        * Mark with <code>1</code> if the border is disputed.
@@ -730,7 +729,7 @@ public class OpenMapTilesSchema {
        * <li>1
        * </ul>
        */
-      public static final String DISPUTED = "disputed";
+      // public static final String DISPUTED = "disputed";
 
       /**
        * Field containing name of the disputed area (extracted from border relation in OSM, without spaces). For country
@@ -751,7 +750,7 @@ public class OpenMapTilesSchema {
        * <li>"TirpaniValleys"
        * </ul>
        */
-      public static final String DISPUTED_NAME = "disputed_name";
+      // public static final String DISPUTED_NAME = "disputed_name";
       /**
        * ISO2 code of country, which wants to see the boundary line. For country boundaries only
        * (<code>admin_level = 2</code>).
@@ -767,7 +766,7 @@ public class OpenMapTilesSchema {
        * <li>1
        * </ul>
        */
-      public static final String MARITIME = "maritime";
+      // public static final String MARITIME = "maritime";
     }
     /** Attribute values for map elements in the boundary layer. */
     final class FieldValues {
@@ -775,7 +774,7 @@ public class OpenMapTilesSchema {
       public static final String DISPUTED_NAME_BARAHOTIIVALLEYS = "BaraHotiiValleys";
       public static final String DISPUTED_NAME_CHINESECLAIM = "ChineseClaim";
       public static final String DISPUTED_NAME_CRIMEA = "Crimea";
-      public static final String DISPUTED_NAME_DEMCHOK = "Demchok";
+      // public static final String DISPUTED_NAME_DEMCHOK = "Demchok";
       public static final String DISPUTED_NAME_DOKDO = "Dokdo";
       public static final String DISPUTED_NAME_INDIANCLAIM_NORTH = "IndianClaim-North";
       public static final String DISPUTED_NAME_INDIANCLAIMWESTERNKASHMIR = "IndianClaimwesternKashmir";
@@ -1049,27 +1048,27 @@ public class OpenMapTilesSchema {
        * <li>1
        * </ul>
        */
-      public static final String INDOOR = "indoor";
+      // public static final String INDOOR = "indoor";
       /**
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:bicycle"><code>bicycle</code></a> tag
        * (highways only).
        */
-      public static final String BICYCLE = "bicycle";
+      // public static final String BICYCLE = "bicycle";
       /**
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:foot"><code>foot</code></a> tag (highways
        * only).
        */
-      public static final String FOOT = "foot";
+      // public static final String FOOT = "foot";
       /**
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:horse"><code>horse</code></a> tag
        * (highways only).
        */
-      public static final String HORSE = "horse";
+      // public static final String HORSE = "horse";
       /**
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:mtb:scale"><code>mtb:scale</code></a> tag
        * (highways only).
        */
-      public static final String MTB_SCALE = "mtb_scale";
+      // public static final String MTB_SCALE = "mtb_scale";
 
       /**
        * Values of <a href="https://wiki.openstreetmap.org/wiki/Key:surface"><code>surface</code></a> tag devided into 2
@@ -1084,7 +1083,7 @@ public class OpenMapTilesSchema {
        * <li>"unpaved"
        * </ul>
        */
-      public static final String SURFACE = "surface";
+      // public static final String SURFACE = "surface";
     }
     /** Attribute values for map elements in the transportation layer. */
     final class FieldValues {
@@ -1216,18 +1215,18 @@ public class OpenMapTilesSchema {
     /** Attribute names for map elements in the building layer. */
     final class Fields {
       /** An approximated height from levels and height of the building or building:part. */
-      public static final String RENDER_HEIGHT = "render_height";
+      // public static final String RENDER_HEIGHT = "render_height";
       /**
        * An approximated height from minimum levels or minimum height of the bottom of the building or building:part.
        */
-      public static final String RENDER_MIN_HEIGHT = "render_min_height";
+      // public static final String RENDER_MIN_HEIGHT = "render_min_height";
       /** Colour */
-      public static final String COLOUR = "colour";
+      // public static final String COLOUR = "colour";
       /**
        * If True, building (part) should not be rendered in 3D. Currently,
        * <a href="https://wiki.openstreetmap.org/wiki/Simple_3D_buildings">building outlines</a> are marked as hide_3d.
        */
-      public static final String HIDE_3D = "hide_3d";
+      // public static final String HIDE_3D = "hide_3d";
     }
     /** Attribute values for map elements in the building layer. */
     final class FieldValues {
@@ -1271,7 +1270,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
        * deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // // public static final String NAME_DE = "name_de";
 
       /**
        * Distinguish between <code>lake</code>, <code>ocean</code>, <code>bay</code>, <code>strait</code>, and
@@ -1348,7 +1347,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
        * deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // // public static final String NAME_DE = "name_de";
       /**
        * The OSM <a href="http://wiki.openstreetmap.org/wiki/Key:ref"><code>ref</code></a> tag of the motorway or its
        * network.
@@ -1620,7 +1619,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
        * deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // // public static final String NAME_DE = "name_de";
 
       /**
        * The <strong>capital</strong> field marks the <a href=
@@ -1670,7 +1669,7 @@ public class OpenMapTilesSchema {
        * Available only for <code>class=country</code>. Original value of the <a href=
        * "http://wiki.openstreetmap.org/wiki/Tag:place%3Dcountry"><code>country_code_iso3166_1_alpha_2</code></a> tag.
        */
-      public static final String ISO_A2 = "iso_a2";
+      // public static final String ISO_A2 = "iso_a2";
       /**
        * Countries, states and the most important cities all have a <strong>rank</strong> to boost their importance on
        * the map. The <strong>rank</strong> field for countries and states ranges from <code>1</code> to <code>6</code>
@@ -1776,7 +1775,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
        * deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // // public static final String NAME_DE = "name_de";
 
       /**
        * More general classes of POIs. If there is no more general <code>class</code> for the <code>subclass</code> this
@@ -1806,7 +1805,6 @@ public class OpenMapTilesSchema {
        * <li>post
        * <li>cafe
        * <li>school
-       * <li>alcohol_shop
        * <li>bar
        * <li>harbor
        * <li>car
@@ -1865,7 +1863,7 @@ public class OpenMapTilesSchema {
        * <li>1
        * </ul>
        */
-      public static final String AGG_STOP = "agg_stop";
+      // public static final String AGG_STOP = "agg_stop";
       /** Original value of <a href="http://wiki.openstreetmap.org/wiki/Key:level"><code>level</code></a> tag. */
       public static final String LEVEL = "level";
       /** Original value of <a href="http://wiki.openstreetmap.org/wiki/Key:layer"><code>layer</code></a> tag. */
@@ -1886,42 +1884,42 @@ public class OpenMapTilesSchema {
       public static final String CLASS_SHOP = "shop";
       public static final String CLASS_OFFICE = "office";
       public static final String CLASS_TOWN_HALL = "town_hall";
-      public static final String CLASS_GOLF = "golf";
+      // public static final String CLASS_GOLF = "golf";
       public static final String CLASS_FAST_FOOD = "fast_food";
       public static final String CLASS_PARK = "park";
       public static final String CLASS_BUS = "bus";
       public static final String CLASS_RAILWAY = "railway";
       public static final String CLASS_AERIALWAY = "aerialway";
       public static final String CLASS_ENTRANCE = "entrance";
-      public static final String CLASS_CAMPSITE = "campsite";
-      public static final String CLASS_LAUNDRY = "laundry";
+      // public static final String CLASS_CAMPSITE = "campsite";
+      // public static final String CLASS_LAUNDRY = "laundry";
       public static final String CLASS_GROCERY = "grocery";
       public static final String CLASS_LIBRARY = "library";
-      public static final String CLASS_COLLEGE = "college";
+      // public static final String CLASS_COLLEGE = "college";
       public static final String CLASS_LODGING = "lodging";
-      public static final String CLASS_ICE_CREAM = "ice_cream";
+      // public static final String CLASS_ICE_CREAM = "ice_cream";
       public static final String CLASS_POST = "post";
       public static final String CLASS_CAFE = "cafe";
-      public static final String CLASS_SCHOOL = "school";
-      public static final String CLASS_ALCOHOL_SHOP = "alcohol_shop";
-      public static final String CLASS_BAR = "bar";
-      public static final String CLASS_HARBOR = "harbor";
-      public static final String CLASS_CAR = "car";
+      // public static final String CLASS_SCHOOL = "school";
+      // public static final String CLASS_ALCOHOL_SHOP = "alcohol_shop";
+      // public static final String CLASS_BAR = "bar";
+      // public static final String CLASS_HARBOR = "harbor";
+      // public static final String CLASS_CAR = "car";
       public static final String CLASS_HOSPITAL = "hospital";
       public static final String CLASS_CEMETERY = "cemetery";
       public static final String CLASS_ATTRACTION = "attraction";
-      public static final String CLASS_BEER = "beer";
-      public static final String CLASS_MUSIC = "music";
-      public static final String CLASS_STADIUM = "stadium";
-      public static final String CLASS_ART_GALLERY = "art_gallery";
-      public static final String CLASS_CLOTHING_STORE = "clothing_store";
+      // public static final String CLASS_BEER = "beer";
+      // public static final String CLASS_MUSIC = "music";
+      // public static final String CLASS_STADIUM = "stadium";
+      // public static final String CLASS_ART_GALLERY = "art_gallery";
+      // public static final String CLASS_CLOTHING_STORE = "clothing_store";
       public static final String CLASS_SWIMMING = "swimming";
       public static final String CLASS_CASTLE = "castle";
       public static final String CLASS_ATM = "atm";
       public static final String CLASS_FUEL = "fuel";
       public static final Set<String> CLASS_VALUES = Set.of("shop", "office", "town_hall", "golf", "fast_food", "park",
         "bus", "railway", "aerialway", "entrance", "campsite", "laundry", "grocery", "library", "college", "lodging",
-        "ice_cream", "post", "cafe", "school", "alcohol_shop", "bar", "harbor", "car", "hospital", "cemetery",
+        "ice_cream", "post", "cafe", "school", "bar", "harbor", "car", "hospital", "cemetery",
         "attraction", "beer", "music", "stadium", "art_gallery", "clothing_store", "swimming", "castle", "atm", "fuel");
     }
     /** Complex mappings to generate attribute values from OSM element tags in the poi layer. */
@@ -1936,20 +1934,8 @@ public class OpenMapTilesSchema {
             "optician", "outdoor", "paint", "perfumery", "perfume", "pet", "photo", "second_hand", "shoes", "sports",
             "stationery", "tailor", "tattoo", "ticket", "tobacco", "toys", "travel_agency", "watches", "weapons",
             "wholesale")),
-        MultiExpression.entry("office",
-          matchAny("subclass", "accountant", "advertising_agency", "architect", "association", "bail_bond_agent",
-            "charity", "company", "construction_company", "consulting", "cooperative", "courier", "coworking",
-            "diplomatic", "educational_institution", "employment_agency", "energy_supplier", "engineer", "estate_agent",
-            "financial", "financial_advisor", "forestry", "foundation", "geodesist", "government", "graphic_design",
-            "guide", "harbour_master", "health_insurance", "insurance", "interior_design", "it", "lawyer", "logistics",
-            "marketing", "moving_company", "newspaper", "ngo", "notary", "physician", "political_party",
-            "private_investigator", "property_management", "publisher", "quango", "religion", "research", "security",
-            "surveyor", "tax_advisor", "taxi", "telecommunication", "therapist", "translator", "travel_agent",
-            "tutoring", "union", "university", "water_utility", "web_design", "wedding_planner")),
         MultiExpression.entry("town_hall",
           matchAny("subclass", "townhall", "public_building", "courthouse", "community_centre")),
-        MultiExpression.entry("golf", matchAny("subclass", "golf", "golf_course", "miniature_golf")),
-        MultiExpression.entry("fast_food", matchAny("subclass", "fast_food", "food_court")),
         MultiExpression.entry("park", matchAny("subclass", "park", "bbq")),
         MultiExpression.entry("bus", matchAny("subclass", "bus_stop", "bus_station")),
         MultiExpression.entry("railway",
@@ -1957,32 +1943,17 @@ public class OpenMapTilesSchema {
             matchAny("subclass", "halt", "tram_stop", "subway"))),
         MultiExpression.entry("aerialway", and(matchAny("subclass", "station"), matchAny("mapping_key", "aerialway"))),
         MultiExpression.entry("entrance", matchAny("subclass", "subway_entrance", "train_station_entrance")),
-        MultiExpression.entry("campsite", matchAny("subclass", "camp_site", "caravan_site")),
-        MultiExpression.entry("laundry", matchAny("subclass", "laundry", "dry_cleaning")),
         MultiExpression.entry("grocery",
           matchAny("subclass", "supermarket", "deli", "delicatessen", "department_store", "greengrocer",
             "marketplace")),
-        MultiExpression.entry("library", matchAny("subclass", "books", "library")),
-        MultiExpression.entry("college", matchAny("subclass", "university", "college")),
         MultiExpression.entry("lodging",
           matchAny("subclass", "hotel", "motel", "bed_and_breakfast", "guest_house", "hostel", "chalet", "alpine_hut",
             "dormitory")),
-        MultiExpression.entry("ice_cream", matchAny("subclass", "ice_cream")),
-        MultiExpression.entry("post", matchAny("subclass", "post_box", "post_office", "parcel_locker")),
         MultiExpression.entry("cafe", matchAny("subclass", "cafe")),
-        MultiExpression.entry("school", matchAny("subclass", "school", "kindergarten")),
-        MultiExpression.entry("alcohol_shop", matchAny("subclass", "alcohol", "beverages", "wine")),
-        MultiExpression.entry("bar", matchAny("subclass", "bar", "nightclub")),
         MultiExpression.entry("harbor", matchAny("subclass", "marina", "dock")),
-        MultiExpression.entry("car", matchAny("subclass", "car", "car_repair", "car_parts", "taxi")),
         MultiExpression.entry("hospital", matchAny("subclass", "hospital", "nursing_home", "clinic")),
         MultiExpression.entry("cemetery", matchAny("subclass", "grave_yard", "cemetery")),
         MultiExpression.entry("attraction", matchAny("subclass", "attraction", "viewpoint")),
-        MultiExpression.entry("beer", matchAny("subclass", "biergarten", "pub")),
-        MultiExpression.entry("music", matchAny("subclass", "music", "musical_instrument")),
-        MultiExpression.entry("stadium", matchAny("subclass", "american_football", "stadium", "soccer")),
-        MultiExpression.entry("art_gallery", matchAny("subclass", "art", "artwork", "gallery", "arts_centre")),
-        MultiExpression.entry("clothing_store", matchAny("subclass", "bag", "clothes")),
         MultiExpression.entry("swimming", matchAny("subclass", "swimming_area", "swimming")),
         MultiExpression.entry("castle", matchAny("subclass", "castle", "ruins")),
         MultiExpression.entry("atm", matchAny("subclass", "atm")),
@@ -2020,7 +1991,7 @@ public class OpenMapTilesSchema {
        * German name <code>name:de</code> if available, otherwise <code>name</code> or <code>name:en</code>. This is
        * deprecated and will be removed in a future release in favor of <code>name:de</code>.
        */
-      public static final String NAME_DE = "name_de";
+      // // public static final String NAME_DE = "name_de";
 
       /**
        * Distinguish between more and less important aerodromes. Class is derived from the value of
@@ -2039,13 +2010,13 @@ public class OpenMapTilesSchema {
        */
       public static final String CLASS = "class";
       /** 3-character code issued by the IATA. */
-      public static final String IATA = "iata";
+      // public static final String IATA = "iata";
       /** 4-letter code issued by the ICAO. */
-      public static final String ICAO = "icao";
+      // public static final String ICAO = "icao";
       /** Elevation (<code>ele</code>) in meters. */
       public static final String ELE = "ele";
       /** Elevation (<code>ele</code>) in feets. */
-      public static final String ELE_FT = "ele_ft";
+      // public static final String ELE_FT = "ele_ft";
     }
     /** Attribute values for map elements in the aerodrome_label layer. */
     final class FieldValues {
