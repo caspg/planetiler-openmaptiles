@@ -5,13 +5,7 @@ on [OpenMapTiles](https://github.com/openmaptiles/openmaptiles).
 
 ## How to run
 
-Using pre-built docker image:
-
-```bash
-docker run -v "$(pwd)/data":/data openmaptiles/planetiler-openmaptiles:latest --force --download --area=monaco
-```
-
-Or to build from source, after [installing Java 21+](https://adoptium.net/installation.html):
+Build from source, after [installing Java 21+](https://adoptium.net/installation.html):
 
 ```bash
 # Build the project (use mvnw.cmd on windows):
@@ -21,7 +15,19 @@ Or to build from source, after [installing Java 21+](https://adoptium.net/instal
  ./mvnw clean package -Dmaven.test.skip
 
 # Then run:
-JAVA_TOOL_OPTIONS="-Xmx12g" java -jar target/*with-deps.jar --force --download --area=pomorskie  --max_point_buffer=4 --exclude_layers=housenumber
+JAVA_TOOL_OPTIONS="-Xmx32g" java -jar target/*with-deps.jar \
+  --force \
+  --download \
+  --area=europe  \
+  --bounds=planet \
+  --max_point_buffer=4 \
+  --exclude_layers=housenumber \
+  --download-threads=10 --download-chunk-size-mb=1000 \
+  --nodemap-type=array --storage=mmap
+
+# There is also sh script:
+screen -d -m "./run_europe.sh"
+tail -f logs.txt
 ```
 
 See [Planetiler README.md](https://github.com/onthegomap/planetiler/blob/main/README.md) for more description of the
