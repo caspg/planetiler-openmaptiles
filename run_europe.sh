@@ -4,7 +4,7 @@ set -e
 JAVA_TOOL_OPTIONS="-Xmx32g" java -jar target/*with-deps.jar \
   --force \
   --download \
-  --area=pomorskie  \
+  --area=europe  \
   --languages=en,pl,latin \
   --bounds=planet \
   --max_point_buffer=4 \
