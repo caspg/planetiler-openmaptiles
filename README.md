@@ -15,17 +15,6 @@ Build from source, after [installing Java 21+](https://adoptium.net/installation
  ./mvnw clean package -Dmaven.test.skip
 
 # Then run:
-JAVA_TOOL_OPTIONS="-Xmx32g" java -jar target/*with-deps.jar \
-  --force \
-  --download \
-  --area=europe  \
-  --bounds=planet \
-  --max_point_buffer=4 \
-  --exclude_layers=housenumber \
-  --download-threads=10 --download-chunk-size-mb=1000 \
-  --nodemap-type=array --storage=mmap
-
-# There is also sh script:
 screen -d -m "./run_europe.sh"
 tail -f logs.txt
 ```
