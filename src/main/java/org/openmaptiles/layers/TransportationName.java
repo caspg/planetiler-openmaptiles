@@ -257,8 +257,6 @@ public class TransportationName implements
     String baseClass = highwayClass.replace("_construction", "");
 
     int minzoom = FieldValues.CLASS_TRUNK.equals(baseClass) ? 8 :
-      FieldValues.CLASS_PRIMARY.equals(baseClass) ? 9 :
-      FieldValues.CLASS_SECONDARY.equals(baseClass) ? 11 :
       FieldValues.CLASS_MOTORWAY.equals(baseClass) ? 6 :
       isLink ? 13 : 12; // fallback - get from line minzoom, but floor at 12
 
