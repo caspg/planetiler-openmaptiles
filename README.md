@@ -17,6 +17,9 @@ Build from source, after [installing Java 21+](https://adoptium.net/installation
 # Then run:
 screen -d -m "./run_europe.sh"
 tail -f logs.txt
+
+# or run for local testing:
+bash ./run_pomorskie.sh
 ```
 
 See [Planetiler README.md](https://github.com/onthegomap/planetiler/blob/main/README.md) for more description of the
