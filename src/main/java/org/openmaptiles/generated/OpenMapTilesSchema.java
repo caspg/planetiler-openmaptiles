@@ -716,9 +716,9 @@ public class OpenMapTilesSchema {
        */
       public static final String ADMIN_LEVEL = "admin_level";
       /** State name on the left of the border. For country boundaries only (<code>admin_level = 2</code>). */
-      // public static final String ADM0_L = "adm0_l";
+      public static final String ADM0_L = "adm0_l";
       /** State name on the right of the border. For country boundaries only (<code>admin_level = 2</code>). */
-      // public static final String ADM0_R = "adm0_r";
+      public static final String ADM0_R = "adm0_r";
 
       /**
        * Mark with <code>1</code> if the border is disputed.

@@ -13,4 +13,5 @@ JAVA_TOOL_OPTIONS="-Xmx32g" java -jar target/*with-deps.jar \
   --download-chunk-size-mb=1000 \
   --threads=6 \
   --free-osm-after-read \
+  —gzip-temp \
   --nodemap-type=array --storage=mmap 2>&1 | tee logs.txt
