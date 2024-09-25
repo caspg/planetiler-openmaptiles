@@ -573,7 +573,7 @@ public class Transportation implements
   private boolean isPierPolygon(Tables.OsmHighwayLinestring element) {
     if ("pier".equals(element.manMade())) {
       try {
-        if (element.source().worldGeometry() instanceof LineString lineString && lineString.isClosed()) {
+        if (element.source().worldGeometry()instanceof LineString lineString && lineString.isClosed()) {
           // ignore this because it's a polygon
           return true;
         }

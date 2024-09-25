@@ -20,8 +20,7 @@ public class BicycleRouteLayer implements
   Layer,
   ForwardingProfile.OsmRelationPreprocessor,
   OpenMapTilesProfile.OsmAllProcessor,
-  ForwardingProfile.LayerPostProcesser
- {
+  ForwardingProfile.LayerPostProcesser {
   private static final String LAYER_NAME = "bicycle_route";
 
   @Override
@@ -56,11 +55,11 @@ public class BicycleRouteLayer implements
           relation.getString("route"),
           // except map network abbreviation to a human-readable value
           switch (relation.getString("network", "")) {
-            case "icn" -> "international";
-            case "ncn" -> "national";
-            case "rcn" -> "regional";
-            case "lcn" -> "local";
-            default -> "other";
+          case "icn" -> "international";
+          case "ncn" -> "national";
+          case "rcn" -> "regional";
+          case "lcn" -> "local";
+          default -> "other";
           },
           relation.getString("wikipedia"),
           relation.getString("website")
@@ -93,21 +92,21 @@ public class BicycleRouteLayer implements
       };
 
       features.line(LAYER_NAME)
-      .setAttr("name", relation.name)
-      .setAttr("ref", relation.ref)
-      .setAttr("network", relation.network)
-      .setAttr("wikipedia", relation.wikipedia)
-      .setAttr("website", relation.website)
-      .setZoomRange(minZoom, 14)
-      // don't filter out short line segments even at low zooms because the next step needs them
-      // to merge lines with the same tags where the endpoints are touching
-      .setMinPixelSize(0);
+        .setAttr("name", relation.name)
+        .setAttr("ref", relation.ref)
+        .setAttr("network", relation.network)
+        .setAttr("wikipedia", relation.wikipedia)
+        .setAttr("website", relation.website)
+        .setZoomRange(minZoom, 14)
+        // don't filter out short line segments even at low zooms because the next step needs them
+        // to merge lines with the same tags where the endpoints are touching
+        .setMinPixelSize(0);
     }
   }
 
   @Override
   public List<VectorTile.Feature> postProcess(int zoom, List<VectorTile.Feature> items) {
-        // FeatureMerge has several utilities for merging geometries in a layer that share the same tags.
+    // FeatureMerge has several utilities for merging geometries in a layer that share the same tags.
     // `mergeLineStrings` combines lines with the same tags where the endpoints touch.
     // Tiles are 256x256 pixels and all FeatureMerge operations work in tile pixel coordinates.
     return FeatureMerge.mergeLineStrings(items,
