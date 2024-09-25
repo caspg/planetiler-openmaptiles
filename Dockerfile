@@ -5,6 +5,9 @@ RUN apt-get update && \
   apt-get install -y git && \
   rm -rf /var/lib/apt/lists/*
 
+ARG JAVA_TOOL_OPTIONS "-Xmx1g"
+ENV JAVA_TOOL_OPTIONS $JAVA_TOOL_OPTIONS
+
 WORKDIR /planetiler
 
 COPY . .
