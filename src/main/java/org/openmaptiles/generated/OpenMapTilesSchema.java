@@ -116,7 +116,7 @@ public class OpenMapTilesSchema {
        * From zoom 6 are taken OSM IDs. Up to zoom 5 there are used Natural Earth lakes, where are propagated the OSM
        * IDs insted of Natural Earth IDs. For smaller area then planet, NE lakes keep their Natural Earth IDs.
        */
-      // public static final String ID = "id";
+      public static final String ID = "id";
 
       /**
        * All water polygons from <a href="http://osmdata.openstreetmap.de/">OpenStreetMapData</a> have the class

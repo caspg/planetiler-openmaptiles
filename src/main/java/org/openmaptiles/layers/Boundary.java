@@ -178,6 +178,7 @@ public class Boundary implements
       return;
     }
     // boolean disputed = feature.getString("featurecla", "").startsWith("Disputed");
+    boolean disputed = feature.getString("featurecla", "").startsWith("Disputed");
     record BoundaryInfo(int adminLevel, int minzoom, int maxzoom) {}
     BoundaryInfo info = switch (table) {
       case "ne_110m_admin_0_boundary_lines_land" -> new BoundaryInfo(2, 0, 0);
