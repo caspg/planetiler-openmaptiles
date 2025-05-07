@@ -1055,7 +1055,7 @@ public class OpenMapTilesSchema {
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:bicycle"><code>bicycle</code></a> tag
        * (highways only).
        */
-      // public static final String BICYCLE = "bicycle";
+      public static final String BICYCLE = "bicycle";
       /**
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:foot"><code>foot</code></a> tag (highways
        * only).

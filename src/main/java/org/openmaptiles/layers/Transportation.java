@@ -240,8 +240,22 @@ public class Transportation implements
     ), null) : isBridgeOrPier(manMade) ? manMade : null;
   }
 
-  static String highwaySubclass(String highwayClass, String publicTransport, String highway) {
-    return FieldValues.CLASS_PATH.equals(highwayClass) ? coalesce(nullIfEmpty(publicTransport), highway) : null;
+  static String highwaySubclass(String highwayClass, String publicTransport, String highway, String bicycle) {
+    if (!FieldValues.CLASS_PATH.equals(highwayClass)) {
+      return null;
+    }
+
+    String publicTransportValue = nullIfEmpty(publicTransport);
+    if (publicTransportValue != null) {
+      return publicTransportValue;
+    }
+
+    String bicycleValue = nullIfEmpty(bicycle);
+    if (bicycleValue != null && bicycleValue.equals("designated")) {
+      return FieldValues.SUBCLASS_CYCLEWAY;
+    }
+
+    return highway;
   }
 
   static boolean isFootwayOrSteps(String highway) {
@@ -495,14 +509,14 @@ public class Transportation implements
       FeatureCollector.Feature feature = features.line(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
         // main attributes at all zoom levels (used for grouping <= z8)
         .setAttr(Fields.CLASS, highwayClass)
-        .setAttr(Fields.SUBCLASS, highwaySubclass(highwayClass, element.publicTransport(), highway))
+        .setAttr(Fields.SUBCLASS, highwaySubclass(highwayClass, element.publicTransport(), highway, element.bicycle()))
         .setAttr(Fields.NETWORK, networkType != null ? networkType.name : null)
         .setAttrWithMinSize(Fields.BRUNNEL, brunnel(element.isBridge(), element.isTunnel(), element.isFord()), 4, 4, 12)
         // z8+
         .setAttrWithMinzoom(Fields.EXPRESSWAY, expressway ? 1 : null, 8)
         // z9+
         .setAttrWithMinSize(Fields.LAYER, nullIfLong(element.layer(), 0), 4, 9, 12)
-        // .setAttrWithMinzoom(Fields.BICYCLE, nullIfEmpty(element.bicycle()), 9)
+        .setAttrWithMinzoom(Fields.BICYCLE, nullIfEmpty(element.bicycle()), 9)
         // .setAttrWithMinzoom(Fields.FOOT, nullIfEmpty(element.foot()), 9)
         // .setAttrWithMinzoom(Fields.HORSE, nullIfEmpty(element.horse()), 9)
         // .setAttrWithMinzoom(Fields.MTB_SCALE, nullIfEmpty(element.mtbScale()), 9)
@@ -573,7 +587,7 @@ public class Transportation implements
   private boolean isPierPolygon(Tables.OsmHighwayLinestring element) {
     if ("pier".equals(element.manMade())) {
       try {
-        if (element.source().worldGeometry()instanceof LineString lineString && lineString.isClosed()) {
+        if (element.source().worldGeometry() instanceof LineString lineString && lineString.isClosed()) {
           // ignore this because it's a polygon
           return true;
         }
@@ -658,7 +672,8 @@ public class Transportation implements
       if (highwayClass != null) {
         features.polygon(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
           .setAttr(Fields.CLASS, highwayClass)
-          .setAttr(Fields.SUBCLASS, highwaySubclass(highwayClass, element.publicTransport(), element.highway()))
+          .setAttr(Fields.SUBCLASS,
+            highwaySubclass(highwayClass, element.publicTransport(), element.highway(), null))
           .setAttr(Fields.BRUNNEL, brunnel("bridge".equals(manMade), false, false))
           .setAttr(Fields.LAYER, nullIfLong(element.layer(), 0))
           .setSortKey(element.zOrder())
