@@ -148,6 +148,10 @@ public class Poi implements
       return 11;
     }
 
+    if ("bus_stop".equals(subclass) || "tram_stop".equals(subclass)) {
+      return 16;
+    }
+
     boolean lowZoom = "halt".equals(subclass) || "ferry_terminal".equals(subclass);
     return lowZoom ? 12 : 14;
   }
