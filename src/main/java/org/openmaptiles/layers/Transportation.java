@@ -255,6 +255,10 @@ public class Transportation implements
       return FieldValues.SUBCLASS_CYCLEWAY;
     }
 
+    if (bicycleValue != null && bicycleValue.equals("yes")) {
+      return FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY;
+    }
+
     return highway;
   }
 

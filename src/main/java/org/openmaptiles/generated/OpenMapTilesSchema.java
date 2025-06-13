@@ -1128,6 +1128,7 @@ public class OpenMapTilesSchema {
       public static final String SUBCLASS_PEDESTRIAN = "pedestrian";
       public static final String SUBCLASS_PATH = "path";
       public static final String SUBCLASS_FOOTWAY = "footway";
+      public static final String SUBCLASS_CYCLEWAY_FOOTWAY = "cycleway_footway";
       public static final String SUBCLASS_CYCLEWAY = "cycleway";
       public static final String SUBCLASS_STEPS = "steps";
       public static final String SUBCLASS_BRIDLEWAY = "bridleway";
