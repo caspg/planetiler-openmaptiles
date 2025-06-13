@@ -585,6 +585,12 @@ public class Transportation implements
     if (isLink(highway) || isLink(construction)) {
       minzoom = Math.max(minzoom, 9);
     }
+    // Lower minzoom for cycleway paths
+    String subclass = highwaySubclass(highwayClass, element.publicTransport(), element.highway(), element.bicycle());
+    if (FieldValues.CLASS_PATH.equals(highwayClass) &&
+      (FieldValues.SUBCLASS_CYCLEWAY.equals(subclass) || FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY.equals(subclass))) {
+      minzoom = Math.min(minzoom, 12);
+    }
     return minzoom;
   }
 
