@@ -1057,6 +1057,17 @@ public class OpenMapTilesSchema {
        */
       public static final String BICYCLE = "bicycle";
       /**
+       * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:cycleway"><code>cycleway</code></a> tag
+       * (highways only). Indicates presence of cycleway lanes or tracks.
+       * <p>
+       * allowed values:
+       * <ul>
+       * <li>"lane"
+       * <li>"track"
+       * </ul>
+       */
+      public static final String CYCLEWAY = "cycleway";
+      /**
        * Original value of the <a href="http://wiki.openstreetmap.org/wiki/Key:foot"><code>foot</code></a> tag (highways
        * only).
        */
@@ -1154,6 +1165,9 @@ public class OpenMapTilesSchema {
       public static final String SURFACE_PAVED = "paved";
       public static final String SURFACE_UNPAVED = "unpaved";
       public static final Set<String> SURFACE_VALUES = Set.of("paved", "unpaved");
+      public static final String CYCLEWAY_LANE = "lane";
+      public static final String CYCLEWAY_TRACK = "track";
+      public static final Set<String> CYCLEWAY_VALUES = Set.of("lane", "track");
     }
     /** Complex mappings to generate attribute values from OSM element tags in the transportation layer. */
     final class FieldMappings {

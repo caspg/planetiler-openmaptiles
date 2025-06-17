@@ -226,6 +226,22 @@ public class Transportation implements
     return (value == null || !SERVICE_VALUES.contains(value)) ? null : value;
   }
 
+  /** Returns a value for {@code cycleway} tag constrained to a small set of known values from raw OSM data. */
+  private static String cycleway(String cycleway, String cyclewayLeft, String cyclewayRight) {
+    // Check direct cycleway tag first
+    if ("lane".equals(cycleway) || "track".equals(cycleway)) {
+      return cycleway;
+    }
+    // Check left and right cycleway tags
+    if ("lane".equals(cyclewayLeft) || "lane".equals(cyclewayRight)) {
+      return "lane";
+    }
+    if ("track".equals(cyclewayLeft) || "track".equals(cyclewayRight)) {
+      return "track";
+    }
+    return null;
+  }
+
   private static String railwayClass(String value) {
     return value == null ? null :
       RAILWAY_RAIL_VALUES.contains(value) ? "rail" :
@@ -521,6 +537,10 @@ public class Transportation implements
         // z9+
         .setAttrWithMinSize(Fields.LAYER, nullIfLong(element.layer(), 0), 4, 9, 12)
         .setAttrWithMinzoom(Fields.BICYCLE, nullIfEmpty(element.bicycle()), 9)
+        .setAttrWithMinzoom(Fields.CYCLEWAY, cycleway(
+          nullIfEmpty(element.source().getString("cycleway")),
+          nullIfEmpty(element.source().getString("cycleway:left")),
+          nullIfEmpty(element.source().getString("cycleway:right"))), 9)
         // .setAttrWithMinzoom(Fields.FOOT, nullIfEmpty(element.foot()), 9)
         // .setAttrWithMinzoom(Fields.HORSE, nullIfEmpty(element.horse()), 9)
         // .setAttrWithMinzoom(Fields.MTB_SCALE, nullIfEmpty(element.mtbScale()), 9)
