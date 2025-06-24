@@ -1096,7 +1096,7 @@ public class OpenMapTilesSchema {
        * <li>"unpaved"
        * </ul>
        */
-      // public static final String SURFACE = "surface";
+      public static final String SURFACE = "surface";
     }
     /** Attribute values for map elements in the transportation layer. */
     final class FieldValues {
