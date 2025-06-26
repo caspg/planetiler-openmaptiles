@@ -507,7 +507,7 @@ public class OpenMapTilesSchema {
     final class FieldValues {
       public static final String CLASS_RAILWAY = "railway";
       public static final String CLASS_CEMETERY = "cemetery";
-      // public static final String CLASS_MILITARY = "military";
+      public static final String CLASS_MILITARY = "military";
       public static final String CLASS_RESIDENTIAL = "residential";
       public static final String CLASS_COMMERCIAL = "commercial";
       // public static final String CLASS_INDUSTRIAL = "industrial";
