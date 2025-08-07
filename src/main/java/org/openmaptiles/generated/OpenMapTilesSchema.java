@@ -524,7 +524,7 @@ public class OpenMapTilesSchema {
       // public static final String CLASS_PLAYGROUND = "playground";
       public static final String CLASS_TRACK = "track";
       // public static final String CLASS_THEME_PARK = "theme_park";
-      // public static final String CLASS_ZOO = "zoo";
+      public static final String CLASS_ZOO = "zoo";
       public static final String CLASS_SUBURB = "suburb";
       public static final String CLASS_QUARTER = "quarter";
       public static final String CLASS_NEIGHBOURHOOD = "neighbourhood";
