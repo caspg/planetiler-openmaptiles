@@ -210,8 +210,8 @@ public class Boundary implements
       features.line(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
         .setZoomRange(info.minzoom, info.maxzoom)
         .setMinPixelSizeAtAllZooms(0)
-        .setAttr(Fields.ADMIN_LEVEL, info.adminLevel);
-      .setAttr(Fields.MARITIME, 0)
+        .setAttr(Fields.ADMIN_LEVEL, info.adminLevel)
+      .setAttr(Fields.MARITIME, 0);
       // .setAttr(Fields.DISPUTED, disputed ? 1 : 0);
     }
   }
