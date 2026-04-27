@@ -8,6 +8,7 @@ import com.onthegomap.planetiler.geo.GeometryException;
 import com.onthegomap.planetiler.reader.SimpleFeature;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.StreamSupport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openmaptiles.OpenMapTilesProfile;
@@ -99,6 +100,44 @@ class LanduseTest extends AbstractLayerTest {
     )), process(polygonFeature(Map.of(
       "landuse", "residential"
     ))));
+  }
+
+  @Test
+  void testMilitaryWithName() {
+    var results = process(polygonFeature(Map.of(
+      "landuse", "military",
+      "name", "Fort Example"
+    )));
+    assertFeatures(13, List.of(
+      Map.of(
+        "_layer", "landuse",
+        "class", "military",
+        "name", "Fort Example",
+        "_minzoom", 9,
+        "_maxzoom", 14
+      ),
+      Map.of(
+        "_layer", "landuse",
+        "class", "military",
+        "name", "Fort Example",
+        "_type", "point"
+      )
+    ), results);
+  }
+
+  @Test
+  void testMilitaryWithoutName() {
+    var results = process(polygonFeature(Map.of(
+      "landuse", "military"
+    )));
+    assertFeatures(13, List.of(Map.of(
+      "_layer", "landuse",
+      "class", "military",
+      "_minzoom", 9,
+      "_maxzoom", 14
+    )), results);
+    // verify no point label is created
+    Assertions.assertEquals(1, StreamSupport.stream(results.spliterator(), false).count());
   }
 
   @Test

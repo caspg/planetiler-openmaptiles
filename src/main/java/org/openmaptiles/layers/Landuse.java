@@ -43,6 +43,7 @@ import com.onthegomap.planetiler.FeatureMerge;
 import com.onthegomap.planetiler.ForwardingProfile;
 import com.onthegomap.planetiler.VectorTile;
 import com.onthegomap.planetiler.config.PlanetilerConfig;
+import com.onthegomap.planetiler.geo.GeoUtils;
 import com.onthegomap.planetiler.geo.GeometryException;
 import com.onthegomap.planetiler.reader.SourceFeature;
 import com.onthegomap.planetiler.stats.Stats;
@@ -57,6 +58,7 @@ import java.util.TreeMap;
 import org.openmaptiles.OpenMapTilesProfile;
 import org.openmaptiles.generated.OpenMapTilesSchema;
 import org.openmaptiles.generated.Tables;
+import org.openmaptiles.util.OmtLanguageUtils;
 
 /**
  * Defines the logic for generating map elements for man-made land use polygons like cemeteries, zoos, and hospitals in
@@ -90,8 +92,17 @@ public class Landuse implements
     FieldValues.CLASS_QUARTER,
     FieldValues.CLASS_NEIGHBOURHOOD
   );
+  private static final double WORLD_AREA_FOR_70K_SQUARE_METERS =
+    Math.pow(GeoUtils.metersToPixelAtEquator(0, Math.sqrt(70_000)) / 256d, 2);
+  private static final double LOG2 = Math.log(2);
 
-  public Landuse(Translations translations, PlanetilerConfig config, Stats stats) {}
+  private final Translations translations;
+  private final Stats stats;
+
+  public Landuse(Translations translations, PlanetilerConfig config, Stats stats) {
+    this.translations = translations;
+    this.stats = stats;
+  }
 
   @Override
   public void processNaturalEarth(String table, SourceFeature feature, FeatureCollector features) {
@@ -129,7 +140,30 @@ public class Landuse implements
         feature
           .setMinPixelSizeOverrides(MIN_PIXEL_SIZE_THRESHOLDS);
       }
+
+      if (FieldValues.CLASS_MILITARY.equals(clazz) && element.source().hasTag("name")) {
+        try {
+          double area = element.source().area();
+          int minzoom = getMinZoomForArea(area);
+          var names = OmtLanguageUtils.getNamesWithoutTranslations(element.source().tags());
+          feature.putAttrsWithMinzoom(names, 9);
+          features.pointOnSurface(LAYER_NAME).setBufferPixels(256)
+            .setAttr(Fields.CLASS, clazz)
+            .putAttrs(names)
+            .putAttrs(OmtLanguageUtils.getNames(element.source().tags(), translations))
+            .setPointLabelGridPixelSize(14, 100)
+            .setMinZoom(minzoom);
+        } catch (GeometryException e) {
+          e.log(stats, "omt_landuse_military_area",
+            "Unable to get military area for " + element.source().id());
+        }
+      }
     }
+  }
+
+  private static int getMinZoomForArea(double area) {
+    int minzoom = (int) Math.floor(20 - Math.log(area / WORLD_AREA_FOR_70K_SQUARE_METERS) / LOG2);
+    return Math.clamp(minzoom, 9, 14);
   }
 
   @Override

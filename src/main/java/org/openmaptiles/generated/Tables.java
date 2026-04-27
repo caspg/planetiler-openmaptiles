@@ -88,7 +88,7 @@ public class Tables {
   }
 
   /** The {@code handlerClass} of a layer handler and it's {@code process} method coerced to a {@link RowHandler}. */
-  public record RowHandlerAndClass<T extends Row>(
+  public record RowHandlerAndClass<T extends Row> (
     Class<?> handlerClass,
     RowHandler<T> handler
   ) {}

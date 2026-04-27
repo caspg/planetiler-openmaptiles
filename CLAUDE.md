@@ -15,6 +15,7 @@ This is a Planetiler OpenMapTiles Profile for Velomapa, a Java-based implementat
 ## Common Development Commands
 
 ### Building
+
 ```bash
 # Full build with tests
 ./mvnw clean package
@@ -27,6 +28,7 @@ This is a Planetiler OpenMapTiles Profile for Velomapa, a Java-based implementat
 ```
 
 ### Testing
+
 ```bash
 # Run all tests
 ./mvnw test
@@ -39,6 +41,7 @@ This is a Planetiler OpenMapTiles Profile for Velomapa, a Java-based implementat
 ```
 
 ### Code Formatting
+
 ```bash
 # Apply code formatting (Spotless plugin with Eclipse formatter)
 ./mvnw spotless:apply
@@ -51,6 +54,7 @@ This is a Planetiler OpenMapTiles Profile for Velomapa, a Java-based implementat
 ```
 
 ### Running Map Generation
+
 ```bash
 # Local testing (Pomorskie region)
 bash ./run_pomorskie.sh
@@ -90,6 +94,7 @@ The system processes multiple data sources:
 4. **Natural Earth**: Vector data for natural features
 
 ### Key Layers
+
 - Transportation & TransportationName: Roads, railways, ferry routes
 - Water & WaterName: Water bodies and their labels
 - Building: Building footprints and attributes
@@ -100,6 +105,7 @@ The system processes multiple data sources:
 ## Code Generation
 
 Some code is auto-generated from OpenMapTiles schema:
+
 ```bash
 # Regenerate from OpenMapTiles schema (specify version tag)
 ./scripts/regenerate-openmaptiles.sh v3.15
@@ -111,11 +117,13 @@ Some code is auto-generated from OpenMapTiles schema:
 ## Customization
 
 ### Adding Custom Layers
+
 1. Create new class implementing `Layer` interface in `src/main/java/org/openmaptiles/addons/`
 2. Implement appropriate processor interfaces (e.g., `OsmAllProcessor`)
 3. Register in `ExtraLayers.java`
 
 ### Layer Exclusion/Inclusion
+
 Use command-line arguments:
 - `--exclude-layers=poi,housenumber,...`
 - `--only-layers=water,transportation,...`
@@ -137,6 +145,7 @@ Use command-line arguments:
 ## Docker Support
 
 Docker images can be built using Jib Maven plugin:
+
 ```bash
 # Build Docker image
 ./mvnw jib:dockerBuild
@@ -144,3 +153,4 @@ Docker images can be built using Jib Maven plugin:
 # Multi-architecture build
 ./mvnw jib:build -Pjib-multi-arch
 ```
+
