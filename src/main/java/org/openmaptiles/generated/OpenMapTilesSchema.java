@@ -768,7 +768,7 @@ public class OpenMapTilesSchema {
        * <li>1
        * </ul>
        */
-      // public static final String MARITIME = "maritime";
+      public static final String MARITIME = "maritime";
     }
     /** Attribute values for map elements in the boundary layer. */
     final class FieldValues {

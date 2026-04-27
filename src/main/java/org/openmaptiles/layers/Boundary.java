@@ -211,7 +211,7 @@ public class Boundary implements
         .setZoomRange(info.minzoom, info.maxzoom)
         .setMinPixelSizeAtAllZooms(0)
         .setAttr(Fields.ADMIN_LEVEL, info.adminLevel);
-      // .setAttr(Fields.MARITIME, 0)
+      .setAttr(Fields.MARITIME, 0)
       // .setAttr(Fields.DISPUTED, disputed ? 1 : 0);
     }
   }
@@ -318,7 +318,7 @@ public class Boundary implements
           features.line(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
             .setAttr(Fields.ADMIN_LEVEL, minAdminLevel)
             // .setAttr(Fields.DISPUTED, disputed ? 1 : 0)
-            // .setAttr(Fields.MARITIME, maritime ? 1 : 0)
+            .setAttr(Fields.MARITIME, maritime ? 1 : 0)
             .setMinPixelSizeAtAllZooms(0)
             .setMinZoom(minzoom)
             .setAttr(Fields.CLAIMED_BY, claimedBy);
@@ -359,7 +359,7 @@ public class Boundary implements
             var newFeature = features.line(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
               .setAttr(Fields.ADMIN_LEVEL, key.adminLevel)
               // .setAttr(Fields.DISPUTED, key.disputed ? 1 : 0)
-              // .setAttr(Fields.MARITIME, key.maritime ? 1 : 0)
+              .setAttr(Fields.MARITIME, key.maritime ? 1 : 0)
               .setAttr(Fields.CLAIMED_BY, key.claimedBy)
               // .setAttr(Fields.DISPUTED_NAME, key.disputed ? editName(key.name) : null)
               .setMinPixelSizeAtAllZooms(0)
