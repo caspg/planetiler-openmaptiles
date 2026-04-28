@@ -146,7 +146,6 @@ public class Landuse implements
           double area = element.source().area();
           int minzoom = getMinZoomForArea(area);
           var names = OmtLanguageUtils.getNamesWithoutTranslations(element.source().tags());
-          feature.putAttrsWithMinzoom(names, 9);
           features.pointOnSurface(LAYER_NAME).setBufferPixels(256)
             .setAttr(Fields.CLASS, clazz)
             .putAttrs(names)
