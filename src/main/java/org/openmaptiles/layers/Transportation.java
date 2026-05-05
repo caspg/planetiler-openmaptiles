@@ -257,7 +257,9 @@ public class Transportation implements
   }
 
   static String highwaySubclass(String highwayClass, String publicTransport, String highway, String bicycle) {
-    if (!FieldValues.CLASS_PATH.equals(highwayClass)) {
+    boolean isPath = FieldValues.CLASS_PATH.equals(highwayClass);
+    boolean isPathConstruction = FieldValues.CLASS_PATH_CONSTRUCTION.equals(highwayClass);
+    if (!isPath && !isPathConstruction) {
       return null;
     }
 
@@ -268,11 +270,12 @@ public class Transportation implements
 
     String bicycleValue = nullIfEmpty(bicycle);
     if (bicycleValue != null && bicycleValue.equals("designated")) {
-      return FieldValues.SUBCLASS_CYCLEWAY;
+      return isPathConstruction ? FieldValues.SUBCLASS_CYCLEWAY_CONSTRUCTION : FieldValues.SUBCLASS_CYCLEWAY;
     }
 
     if (bicycleValue != null && bicycleValue.equals("yes")) {
-      return FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY;
+      return isPathConstruction ? FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY_CONSTRUCTION :
+        FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY;
     }
 
     return highway;
@@ -529,7 +532,9 @@ public class Transportation implements
       FeatureCollector.Feature feature = features.line(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
         // main attributes at all zoom levels (used for grouping <= z8)
         .setAttr(Fields.CLASS, highwayClass)
-        .setAttr(Fields.SUBCLASS, highwaySubclass(highwayClass, element.publicTransport(), highway, element.bicycle()))
+        .setAttr(Fields.SUBCLASS, highwaySubclass(highwayClass, element.publicTransport(),
+          FieldValues.CLASS_PATH_CONSTRUCTION.equals(highwayClass) ? element.construction() : highway,
+          element.bicycle()))
         .setAttr(Fields.NETWORK, networkType != null ? networkType.name : null)
         .setAttrWithMinSize(Fields.BRUNNEL, brunnel(element.isBridge(), element.isTunnel(), element.isFord()), 4, 4, 12)
         // z8+
@@ -606,9 +611,13 @@ public class Transportation implements
       minzoom = Math.max(minzoom, 9);
     }
     // Lower minzoom for cycleway paths
-    String subclass = highwaySubclass(highwayClass, element.publicTransport(), element.highway(), element.bicycle());
-    if (FieldValues.CLASS_PATH.equals(highwayClass) &&
-      (FieldValues.SUBCLASS_CYCLEWAY.equals(subclass) || FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY.equals(subclass))) {
+    String effectiveHighway =
+      FieldValues.CLASS_PATH_CONSTRUCTION.equals(highwayClass) ? element.construction() : element.highway();
+    String subclass = highwaySubclass(highwayClass, element.publicTransport(), effectiveHighway, element.bicycle());
+    if ((FieldValues.CLASS_PATH.equals(highwayClass) || FieldValues.CLASS_PATH_CONSTRUCTION.equals(highwayClass)) &&
+      (FieldValues.SUBCLASS_CYCLEWAY.equals(subclass) || FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY.equals(subclass) ||
+        FieldValues.SUBCLASS_CYCLEWAY_CONSTRUCTION.equals(subclass) ||
+        FieldValues.SUBCLASS_CYCLEWAY_FOOTWAY_CONSTRUCTION.equals(subclass))) {
       minzoom = Math.min(minzoom, 12);
     }
     return minzoom;
